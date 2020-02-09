@@ -7,12 +7,21 @@ import Todo from './Todo';
 import TodoForm from './TodoForm';
 
 class TodoList extends Component {
-  render() {
+
+  render(props) {
+    
     return (
       <div className= 'todoCont'>
-        <h1>hello from todo list</h1>
         <TodoForm />
-        <Todo />
+        {
+          this.props.list.map( (item) => {
+            return(
+              <Todo completed= {item.completed} key= {Date.now()*Math.random()} title= {item.task} />
+            )
+          }) 
+        }
+        {/* {console.log(this.props.list)} */}
+        
       </div>
     )//end return
   }//end render

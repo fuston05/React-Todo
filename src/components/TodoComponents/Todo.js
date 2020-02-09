@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 // card like component??
 
 class Todo extends Component {
-  render() {
+  render(props) {
     return (
       <div>
-        <h1>hello from todo</h1>
+        <h1>{this.props.title}</h1>
+        <p>{`Completed: ${this.props.completed}`}</p>
       </div>
     )//end return
   } //end render

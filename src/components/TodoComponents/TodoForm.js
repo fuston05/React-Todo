@@ -6,7 +6,21 @@ export default class TodoForm extends Component {
   render() {
     return (
       <div>
-        <h1>hello from todo form</h1>
+        <form onSubmit= {(e) => {
+          e.preventDefault();
+        }}>
+          <label> Add Todo
+            <input type= 'text' placeholder= 'Add Todo' />
+          </label>
+          <label> Completed
+            <input type= 'checkbox' name= 'completed' />
+          </label>
+          <button onClick= { (e) => {
+            e.preventDefault();
+            console.log('submitted!');
+          } } type= 'submit'>Submit</button>
+          <button onClick= {(e) => { e.preventDefault();console.log('cleared!');}}>Clear Completed</button>
+        </form>
       </div>
     )
   }
