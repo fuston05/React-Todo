@@ -7,20 +7,38 @@ class App extends Component {
     this.state= {
       todos: [
         {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
+          task: '',
+          id: null,
           completed: false
         }
-      ]
+      ],
+      formData: ''
     }
   }//end constructor
 
+  handleSubmit= (e) => {
+    e.preventDefault();
+    this.setState( prevState => ({
+      todos: [
+        ...prevState.todos,
+        {task: this.state.formData,
+        id: Date.now(),
+        completed: false
+      }]
+    }) )
+    
+    //reset from
+    this.setState( {
+      formData: ''
+    } );
+  }//end handleSubmit
 
+  handleChange= (e) => {
+    console.log('targetValue: ', e.target.value);
+    this.setState( {
+      formData: e.target.value
+    } );
+  }
 
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -29,7 +47,10 @@ class App extends Component {
     return (
       <div className= 'mainCont'>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList list= {this.state.todos} />
+        
+        <p>{this.state.todos.task}</p>
+
+        <TodoList handleChange= {this.handleChange} formData= {this.state.formData} handleSubmit= {this.handleSubmit} list= {this.state.todos} />
       </div>
     ); //end return
   }//end render

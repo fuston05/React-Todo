@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 
-
-// card like component??
-
 class Todo extends Component {
-  render(props) {
+  render() {
+
     return (
-      <div>
+      <div className= 'itemCard'>
         <h1>{this.props.title}</h1>
-        <p>{`Completed: ${this.props.completed}`}</p>
+        { // if there's no title set then don't display this input
+          //conditional rendering
+          this.props.title && <label> Completed
+          <input
+              type='checkbox'
+              name='completed' />
+          </label>
+        }
+
       </div>
     )//end return
   } //end render

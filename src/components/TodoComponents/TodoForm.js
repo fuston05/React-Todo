@@ -3,23 +3,23 @@
 import React, { Component } from 'react';
 
 export default class TodoForm extends Component {
+
   render() {
     return (
       <div>
-        <form onSubmit= {(e) => {
-          e.preventDefault();
-        }}>
-          <label> Add Todo
-            <input type= 'text' placeholder= 'Add Todo' />
+        <form onSubmit= {this.props.handleSubmit}>
+
+          <label> Add Task
+            <input 
+            onChange= { this.props.handleChange} 
+            name= 'task'
+            type= 'text' 
+            placeholder= 'Task'
+            value= {this.props.formData} 
+            />
           </label>
-          <label> Completed
-            <input type= 'checkbox' name= 'completed' />
-          </label>
-          <button onClick= { (e) => {
-            e.preventDefault();
-            console.log('submitted!');
-          } } type= 'submit'>Submit</button>
-          <button onClick= {(e) => { e.preventDefault();console.log('cleared!');}}>Clear Completed</button>
+
+          <button type= 'submit'>Submit</button>
         </form>
       </div>
     )
