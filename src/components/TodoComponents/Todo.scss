@@ -1,0 +1,11 @@
+.card{
+  border: 1px solid #999;
+  &:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.completed{
+  text-decoration: line-through;
+}

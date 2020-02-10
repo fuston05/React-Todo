@@ -20,6 +20,7 @@ export default class TodoForm extends Component {
           </label>
 
           <button type= 'submit'>Submit</button>
+          <button >Clear Completed</button>
         </form>
       </div>
     )

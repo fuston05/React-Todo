@@ -16,7 +16,10 @@ class TodoList extends Component {
         {
           this.props.list.map( (item) => {
             return(
-              <Todo completed= {item.completed} key= {Date.now()*Math.random()} title= {item.task} />
+              <Todo 
+              toggleCompleted= {this.props.toggleCompleted} 
+              item= {item} 
+              key= {Date.now()*Math.random()} />
             )
           }) 
         }
