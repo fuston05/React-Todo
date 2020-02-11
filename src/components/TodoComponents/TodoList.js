@@ -7,19 +7,17 @@ import Todo from './Todo';
 import TodoForm from './TodoForm';
 
 class TodoList extends Component {
-  checkResults= ()=> {
-    if(this.props.searchResults.length > 0){
-      let searchRes= true;
+  checkResults = () => {
+    if (this.props.searchResults.length > 0) {
+      let searchRes = true;
       return searchRes;
-    }else{
-      let searchRes= false;
+    } else {
+      let searchRes = false;
       return searchRes;
     }
-    
   }
-  
-  render() {
 
+  render() {
     return (
       <div className='todoCont'>
 
@@ -28,9 +26,8 @@ class TodoList extends Component {
           handleChange={this.props.handleChange}
           formData={this.props.formData}
           handleSubmit={this.props.handleSubmit} />
-          
+
         {
-          
           this.props.list.map((item) => {
             return (
               <Todo
