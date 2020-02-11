@@ -9,22 +9,20 @@ import TodoForm from './TodoForm';
 class TodoList extends Component {
 
   render() {
-    
+
     return (
-      <div className= 'todoCont'>
-        <TodoForm handleClear= {this.props.handleClear} handleChange= {this.props.handleChange} formData= {this.props.formData} handleSubmit= {this.props.handleSubmit} />
+      <div className='todoCont'>
+        <TodoForm handleClear={this.props.handleClear} handleChange={this.props.handleChange} formData={this.props.formData} handleSubmit={this.props.handleSubmit} />
         {
-          this.props.list.map( (item) => {
-            return(
-              <Todo 
-              toggleCompleted= {this.props.toggleCompleted} 
-              item= {item} 
-              key= {Date.now()*Math.random()} />
+          this.props.list.map((item) => {
+            return (
+              <Todo
+                toggleCompleted={this.props.toggleCompleted}
+                item={item}
+                key={Date.now() * Math.random()} />
             )
-          }) 
+          })
         }
-        {/* {console.log(this.props.list)} */}
-        
       </div>
     )//end return
   }//end render

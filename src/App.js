@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from './components/TodoComponents/TodoList';
+
 //styles
 import './components/TodoComponents/Todo.scss';
 
@@ -14,10 +15,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    
-    if(this.formData !== ''){
-      console.log('submit event fired');
+    if (this.state.formData !== '') {
       this.setState(prevState => ({
         todos: [
           ...prevState.todos,
@@ -29,47 +27,45 @@ class App extends Component {
       }))
     }//end if
 
-    //reset from
+    //reset formData state, thus resetting the form field
     this.setState({
       formData: ''
     });
   }//end handleSubmit
 
   handleChange = (e) => {
-    console.log('targetValue: ', e.target.value);
+    // 2 way binding to the text input field to state
     this.setState({
       formData: e.target.value
     });
   }//end handleChange
 
-  toggleCompleted= (id) => {
-    console.log('from toggelCompleted');
-    const newList= this.state.todos.map( (ele) =>{
-      if( ele.id === id ){
+  toggleCompleted = (id) => {
+    const newList = this.state.todos.map((ele) => {
+      if (ele.id === id) { //if id clicked on === id of item in state array
         return {
           ...ele,
-          completed: !ele.completed
+          completed: !ele.completed //toggle the 'completed' property
         };
-      }else{//end if
-        return ele;
-      }
-    } );
-    //update state
-    this.setState( {
+      } else {
+        return ele; // return the rest untouched that weren't clicked
+      }//end if
+    });
+    //update state to the new edited array
+    this.setState({
       todos: newList
-    } );
+    });
   }//end toggelCompleted
 
-  handleClear= (e) => {
-    e.stopPropagation();
-    console.log('handleClear');
-    const newArr= this.state.todos.filter( (item) => {
+  handleClear = (e) => {
+    //filter out items that completed === false 
+    const newArr = this.state.todos.filter((item) => {
       return (item.completed === false);
-    } );
+    });
     //update state
-    this.setState( {
+    this.setState({
       todos: newArr
-    } );
+    });
   }//end handleClear
 
   // you will need a place to store your state in this component.
@@ -79,16 +75,16 @@ class App extends Component {
     return (
       <div className='mainCont'>
         <h2>Welcome to your Todo App!</h2>
-        {console.log('todo state', this.state.todos)}
+
         <p>{this.state.todos.task}</p>
 
-        <TodoList 
-          handleClear= {this.handleClear}
-          handleSubmit= {this.handleSubmit} 
-          toggleCompleted= {this.toggleCompleted} 
-          handleChange= {this.handleChange} 
-          formData= {this.state.formData}  
-          list={ this.state.todos} 
+        <TodoList
+          handleClear={this.handleClear}
+          handleSubmit={this.handleSubmit}
+          toggleCompleted={this.toggleCompleted}
+          handleChange={this.handleChange}
+          formData={this.state.formData}
+          list={this.state.todos}
         />
       </div>
     ); //end return
