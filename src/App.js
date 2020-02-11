@@ -8,8 +8,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      todos: [],
-      formData: ''
+      todos: [{
+        task: 'Kill Bill',
+        id: 234234,
+        completed: false
+      },
+      {
+        task: 'Kill JT',
+        id: 234234233,
+        completed: false
+      },
+      {
+        task: 'Poop',
+        id: 22983741,
+        completed: false
+      }
+    ],
+      formData: '',
+      searchTerm: '',
+      searchResults: []
     }
   }//end constructor
 
@@ -68,13 +85,39 @@ class App extends Component {
     });
   }//end handleClear
 
+  searchChange= (e) => {
+  this.setState({
+    searchTerm: e.target.value
+  });
+
+  const results= this.state.todos.filter( (item) =>{ 
+     return item.task.toLowerCase().includes( this.state.searchTerm.toLowerCase() )
+  } );
+    this.setState({
+      searchResults: results
+    });
+    console.log('results: ', results);
+  }//end searchChange
+  
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
     return (
       <div className='mainCont'>
-        <h1>Welcome to your Todo App!</h1>
+        <h1>Welcome to your Todo App!</h1> 
+        {console.log('todos',this.state.todos)}
+        {console.log('searchResults',this.state.searchResults)}
+        <span>
+          <input 
+            onChange= {this.searchChange}
+            value= {this.searchTerm}
+            type= 'text'
+            name= 'search'
+            id= 'search'
+            placeholder= 'Search'
+          />
+        </span>
 
         <TodoList
           handleClear={this.handleClear}
@@ -82,6 +125,7 @@ class App extends Component {
           toggleCompleted={this.toggleCompleted}
           handleChange={this.handleChange}
           formData={this.state.formData}
+          searchResults= {this.state.searchResults}
           list={this.state.todos}
         />
       </div>
