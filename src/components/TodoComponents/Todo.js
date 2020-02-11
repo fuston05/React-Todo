@@ -6,7 +6,7 @@ class Todo extends Component {
       <div 
         onClick= { () => {this.props.toggleCompleted(this.props.item.id)} } 
         className= {`card${this.props.item.completed ? ' completed' : ''} `}>
-        <h1>{this.props.item.task}</h1>
+        <h2>{this.props.item.task}</h2>
       </div>
     )//end return
   } //end render

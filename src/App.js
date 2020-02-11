@@ -74,9 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className='mainCont'>
-        <h2>Welcome to your Todo App!</h2>
-
-        <p>{this.state.todos.task}</p>
+        <h1>Welcome to your Todo App!</h1>
 
         <TodoList
           handleClear={this.handleClear}
