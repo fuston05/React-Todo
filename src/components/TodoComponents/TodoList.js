@@ -12,7 +12,7 @@ class TodoList extends Component {
     
     return (
       <div className= 'todoCont'>
-        <TodoForm handleChange= {this.props.handleChange} formData= {this.props.formData} handleSubmit= {this.props.handleSubmit} />
+        <TodoForm handleClear= {this.props.handleClear} handleChange= {this.props.handleChange} formData= {this.props.formData} handleSubmit= {this.props.handleSubmit} />
         {
           this.props.list.map( (item) => {
             return(

@@ -7,20 +7,20 @@ export default class TodoForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit= {this.props.handleSubmit}>
+        <form onSubmit= { this.props.handleSubmit }>
 
           <label> Add Task
             <input 
-            onChange= { this.props.handleChange} 
+            onChange= { this.props.handleChange } 
             name= 'task'
             type= 'text' 
             placeholder= 'Task'
-            value= {this.props.formData} 
+            value= { this.props.formData } 
             />
           </label>
 
           <button type= 'submit'>Submit</button>
-          <button >Clear Completed</button>
+          <button onClick= { this.props.handleClear }>Clear Completed</button>
         </form>
       </div>
     )

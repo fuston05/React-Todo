@@ -14,16 +14,20 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    this.setState(prevState => ({
-      todos: [
-        ...prevState.todos,
-        {
-          task: this.state.formData,
-          id: Date.now(),
-          completed: false
-        }]
-    }))
+    e.stopPropagation();
+    
+    if(this.formData !== ''){
+      console.log('submit event fired');
+      this.setState(prevState => ({
+        todos: [
+          ...prevState.todos,
+          {
+            task: this.state.formData,
+            id: Date.now(),
+            completed: false
+          }]
+      }))
+    }//end if
 
     //reset from
     this.setState({
@@ -56,6 +60,18 @@ class App extends Component {
     } );
   }//end toggelCompleted
 
+  handleClear= (e) => {
+    e.stopPropagation();
+    console.log('handleClear');
+    const newArr= this.state.todos.filter( (item) => {
+      return (item.completed === false);
+    } );
+    //update state
+    this.setState( {
+      todos: newArr
+    } );
+  }//end handleClear
+
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -63,10 +79,11 @@ class App extends Component {
     return (
       <div className='mainCont'>
         <h2>Welcome to your Todo App!</h2>
-
+        {console.log('todo state', this.state.todos)}
         <p>{this.state.todos.task}</p>
 
         <TodoList 
+          handleClear= {this.handleClear}
           handleSubmit= {this.handleSubmit} 
           toggleCompleted= {this.toggleCompleted} 
           handleChange= {this.handleChange} 
